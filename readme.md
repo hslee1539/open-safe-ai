@@ -15,23 +15,39 @@ The goal is to make AI systems that anyone can inspect, understand, and trust.
 
 ---
 
+## ⚙️ Installation
+
+```bash
+git clone https://github.com/hslee1539/open-safe-ai.git
+cd open-safe-ai
+pip install .
+```
+
+> ✅ This will install `open-safe-ai` along with its dependencies.
+
+You’ll then be able to run commands using:
+
+```bash
+open-safe-ai
+```
+
 ## 🧩 CLI Commands (powered by Typer)
 
-```
-python main.py list
+```bash
+open-safe-ai list
 ```
 ✅ Shows a list of installed HuggingFace models.
 
-```
-python main.py serve
+```bash
+open-safe-ai serve
 ```
 ✅ Starts the server.
 Exposes the following minimal REST API endpoints:
 -	POST /generate : Text generation
 -	GET /list : Available models
 
-```
-python main.py run <model-name>
+```bash
+open-safe-ai run <model-name>
 ```
 
 ✅ Loads the specified model and provides a simple chat interface, similar to ollama run model.
