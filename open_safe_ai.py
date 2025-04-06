@@ -77,7 +77,7 @@ def predict(query: Query):
         {"text": i.text, "finish_reason": str(i.finish_reason)}
         for i in Mlx.predict(query)
     )
-    stream = (json.dumps(i) for i in stream)
+    stream = (json.dumps(i, separators=(",", ":")) + "\n" for i in stream)
     return StreamingResponse(stream, media_type="application/json")
 
 
@@ -85,8 +85,10 @@ def predict(query: Query):
 def list():
     return Mlx.list()
 
+
 def main():
     cli_app()
+
 
 if __name__ == "__main__":
     main()
