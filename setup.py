@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="open-safe-ai",
-    version="0.0.2",
+    version="0.0.3",
     description="",
     author="hslee1539",
     author_email="hslee1539@gmail.com",

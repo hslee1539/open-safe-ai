@@ -6,7 +6,7 @@ from mlx_lm import load, stream_generate
 from mlx_lm.cache_prompt import make_prompt_cache
 from pathlib import Path
 from typing import Generator
-import os
+import os, json
 
 api_app = FastAPI()
 cli_app = Typer()
@@ -77,16 +77,18 @@ def predict(query: Query):
         {"text": i.text, "finish_reason": str(i.finish_reason)}
         for i in Mlx.predict(query)
     )
-    stream = (str(i) for i in stream)
-    return StreamingResponse(stream, media_type="text/event-stream")
+    stream = (json.dumps(i, separators=(",", ":")) + "\n" for i in stream)
+    return StreamingResponse(stream, media_type="application/json")
 
 
 @api_app.get("/list")
 def list():
     return Mlx.list()
 
+
 def main():
     cli_app()
+
 
 if __name__ == "__main__":
     main()
