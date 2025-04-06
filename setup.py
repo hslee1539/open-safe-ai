@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="open-safe-ai",
-    version="0.0.1",
+    version="0.0.2",
     description="",
     author="hslee1539",
     author_email="hslee1539@gmail.com",
@@ -12,7 +12,8 @@ setup(
         "fastapi",
         "typer",
         "mlx",
-        "mlx_lm"
+        "mlx_lm",
+        "uvicorn"
     ],
     entry_points={
         'console_scripts': [
