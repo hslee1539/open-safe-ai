@@ -14,6 +14,7 @@ cli_app = Typer()
 
 class Query(BaseModel):
     prompt: str
+    system: str
     model: str
 
 
@@ -21,8 +22,11 @@ class Mlx:
     @staticmethod
     def predict(query: Query):
         model, tokenizer = load("mlx-community/" + query.model)
-        messages = [{"role": "user", "content": query.prompt}]
-        prompt = tokenizer.apply_chat_template(messages, add_generation_prompt=True)
+        if query.system:
+            m = [{"role": "user", "content": query.prompt}, {"role": "system", "content": query.system}]
+            prompt = tokenizer.apply_chat_template(m, add_generation_prompt=True)
+        else:
+            prompt = query.prompt
         return stream_generate(model, tokenizer, prompt=prompt)
 
     @staticmethod
